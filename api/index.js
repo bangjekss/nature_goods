@@ -1,4 +1,5 @@
 const express = require('express');
+const { errorHandler } = require('./handlers');
 // const { sequelize } = require('./models');
 const { userRouter } = require('./routes');
 
@@ -8,8 +9,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => res.status(200).send('nature goods api'));
-app.use('/users', userRouter);
+app.use('/user', userRouter);
 
+app.use(errorHandler);
 const API_PORT = process.env.API_PORT;
 require('dotenv').config();
 

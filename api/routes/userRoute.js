@@ -1,12 +1,9 @@
 const express = require('express');
-const { test, login, register, deleteAccount, getAll } = require('../controllers/userControllers');
+const { register } = require('../controllers/userControllers');
+const { registerValidator } = require('../middlewares');
 
 const route = express.Router();
 
-route.get('/', getAll);
-route.get('/test', test);
-route.get('/:id', login);
-route.post('/register', register);
-route.delete('/:id', deleteAccount);
+route.post('/register', registerValidator, register);
 
 module.exports = route;
